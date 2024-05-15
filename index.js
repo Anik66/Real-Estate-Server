@@ -75,7 +75,7 @@ const client = new MongoClient(uri, {
 
       })
 
-      //update  room in db
+      //update  room in database
       app.put('/mybook/:id',async(req,res)=>{
         const id =req.params.id
         const roomData = req.body
