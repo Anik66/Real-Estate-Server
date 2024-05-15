@@ -2,21 +2,28 @@ const express =require('express')
 const cors =require('cors')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
+const app =express()
 
 const port = process.env.PORT || 3000
 
-//04TAHphEohqMujhp
-//luxstay
-
-const app =express()
-const corsOptions ={
-    origin:['http://localhost:5174','http://localhost:5173'],
-    credentials:true,
-    optionSuccessStatus:200
-}
 
 
-app.use(cors(corsOptions))
+// const corsOptions ={
+//     origin:['http://localhost:5174','http://localhost:5173','https://hotel-book-c195d.web.app','https://hotel-book-c195d.firebaseapp.com'],
+//     credentials:true,
+//     optionSuccessStatus:200
+// }
+
+app.use(
+  cors({
+    origin:['http://localhost:5174','http://localhost:5173','https://hotel-book-c195d.web.app','https://hotel-book-c195d.firebaseapp.com'],
+    credentials:true
+  })
+
+);
+
+
+
 app.use(express.json())
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.0wrhevo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
@@ -97,7 +104,7 @@ const client = new MongoClient(uri, {
      
       
       
-      await client.db("admin").command({ ping: 1 });
+     // await client.db("admin").command({ ping: 1 });
       console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
       
