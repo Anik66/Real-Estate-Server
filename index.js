@@ -34,7 +34,7 @@ const client = new MongoClient(uri, {
       const roomscollection=client.db('luxstay').collection('room')
       const bookcollection=client.db('luxstay').collection('book')
 
-      //get all rooms data from db
+      //get all rooms data from database
       app.get('/rooms',async(req,res)=>{
         const result = await roomscollection.find().toArray()
         res.send(result)
